@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  demo-project: 
+    image: registry-cn-local.subsidia.org/demo-project/demo-project
+    build:  
+      context: .
+      dockerfile: Dockerfile
+    environment: 
+      - GIN_MODE=debug
+      - SHUYUN_API_REST_URL=https://crm-uat-lien.decathlon.com.cn
+      - API_ENTRY_PATH=/trigger-msg/v1/api
+      - APP_SECRET=eocjgvkfs
+      - API_VERSION=1.0
+    networks:
+      backend: 
+        aliases:
+          - demo-project
+    ports: 
+      - "3009:3000"
+
+networks: 
+  backend:
+    external:
+      name: demo-project
+         
+    
+    
+
